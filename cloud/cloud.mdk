@@ -30,5 +30,14 @@ layanan. Contoh layanan berbasis SAAS antara lain adalah youtube , google docs
  , spotify , dan facebook.
 
 
+## Platform As A Service (PAAS) { #paas }
+
+Berbeda dengan SAAS yang menyediakan layanan aplikasi yang siap digunakan,
+PAAS menyediakan layanan berupa _platform_ yang digunakan oleh developer
+untuk mengembangkan atau menjalankan aplikasi web atau layanan web nya sendiri.
+PAAS tidak terbatas pada _platform_ untuk menjalankan aplikasi web saja, PAAS
+juga dapat digunakan sebagai platform untuk menjalankan basis data atau penyimpanan data.
+Contoh layanan berbasis PAAS antara lain adalah microsoft azure , amazon web service dan heroku.
+
 
 [reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
