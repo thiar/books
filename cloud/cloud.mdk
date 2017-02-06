@@ -39,5 +39,29 @@ PAAS tidak terbatas pada _platform_ untuk menjalankan aplikasi web saja, PAAS
 juga dapat digunakan sebagai platform untuk menjalankan basis data atau penyimpanan data.
 Contoh layanan berbasis PAAS antara lain adalah microsoft azure , amazon web service dan heroku.
 
+## Infrastructure As A Service (IAAS) { #iaas }
+IAAS menyediakan layanan infrastruktur yang digunakan oleh developer atau
+badan usaha lain dalam mengelola layanan komputasi awan milik nya sendiri.
+Berbeda dengan SAAS dan PAAS, IAAS mengharuskan developer bertanggung jawab
+mengatur aplikasi, data, penyimpanan dan konfigurasi lainnya. IAAS banyak digunakan
+oleh perusahaan yang akan membuat layanan mereka sendiri, dimana mereka perlu
+mengelola segala sumber daya pada layanan komputasi awan yang mereka gunakan.
+Contoh layanan berbasis IAAS antara lain adalah digital ocean, amazon ec2 dan cisco powered cloud service.
+
+Terdapat irisan antara PAAS dan IAAS, sehingga tidak dapat dibedakan secara jelas.
+Berikut gambar yang menunjukkan layer ranah kerja antara SAAS, PAAS, dan IAAS.
+
+~ Center
+![cloud-difference-image]
+~
+Terdapat perbedaan layer yang dapat dikelola oleh developer/pengguna dan vendor/penyedia layanan.
+Pada On Premises semua dapat dikelola oleh pengguna, sedangkan pada IAAS hanya layer OS ke atas yang dapat dikelola.
+Sedangkan pada PAAS layer yang dapat dikelola hanya layer aplikasi dan data, 
+kemudian pada SAAS developer/pengguna tidak dapat mengelola keseluruhan layanan 
+melainkan hanya dapat menggunakan layanan dalam bentuk pengoperasian aplikasi.
+
+
+[cloud-difference-image]: images/cloud-difference-image.png "cloud-difference-image" { width:auto; max-width:90% }
+
 
 [reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
