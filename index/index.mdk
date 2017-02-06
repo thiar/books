@@ -1,0 +1,41 @@
+Title         : Welcome
+Author        : You
+Logo          : True
+
+
+[TITLE]
+
+[TOC]
+
+# Pengertian
+# Virtualization
+## Vagrant
+### Pengertian
+### Cara Install
+### Contoh
+## Docker
+### Pengertian
+### Cara Install
+### Contoh
+# Load Balancing
+## Haproxy
+### Pengertian
+### Cara Install
+### Contoh
+## Nginx
+### Pengertian
+### Cara Install
+### Contoh
+# Distributed Database
+## SQL (Mysql/Maridb)
+### Master Slave
+### Multi Master
+## No SQL
+### Mongodb
+# Monitoring
+## Grafana
+## Influx
+## prometheus
+# Configuration Management
+## Provisioning and Orchestration
+## Ansible
