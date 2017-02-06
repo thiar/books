@@ -1,0 +1,34 @@
+Title         : Komputasi Awan
+Author        : Cat
+Logo          : True
+
+[TITLE]
+
+# Pengertian { #pengertian }
+
+Komputasi awan adalah istilah yang sering kali digunakan untuk mendefinisikan
+sebuah layanan berbasis yang dapat dikases kapanpun dan dimanapun. 
+Komputasi awan sangat berkembang seiring perkembangan akses internet. 
+Komputasi awan banyak digunakan pada layanan-layanan berbasis internet seperti
+google docs , spotify , youtube dan facebook.
+
+# Layanan Komputasi Awan { #pengertian }
+
+Berdasarkan jenis layanannya komputasi awan dapat dibedakan menjadi:
+
+1. Software As A Service(SAAS)
+2. Platform As A Service(PAAS)
+3. Infrastructure As A Service(IAAS)
+
+## Software As A Service (SAAS) { #saas }
+
+SAAS atau Software As A Service adalah layanan yang menawarkan jasa berupa
+aplikasi yang siap digunakan oleh pengguna atau _End User_. Komputasi awan berjenis SAAS
+biasanya berupa aplikasi web yang memudahkan pekerjaan kita. Pada aplikasi
+SAAS pengguna berinteraksi secara langsung dengan aplikasi yang disediakan oleh penyedia 
+layanan. Contoh layanan berbasis SAAS antara lain adalah youtube , google docs
+ , spotify , dan facebook.
+
+
+
+[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
