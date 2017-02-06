@@ -67,6 +67,19 @@ MaaS(Monitoring As A Service) DaaS(Data As A Service) dan masih banyak lagi.
 Komputasi awan akan terus berkembang seiring berkembangnya teknologi internet,
 sehingga memunculkan solusi-solusi yang lebih beragam lagi.
 
+# Karakteristik komputasi awan
+Komputasi awan memiliki karakteristik yang menandakan dia sebagai sebuah layanan komputasi awan.
+Karakteristik-karakteristik ini harus dipenuhi agar layanan kita dapat dikatakan sebagai layanan komputasi awan.
+Lima karakteristik penting dari komputasi awan antara lain:
+
+1. On-demand self-service.
+2. Broad network access.
+3. Resource pooling.
+4. Rapid elasticity.
+5. Measured service.
+
+
+
 [cloud-difference-image]: images/cloud-difference-image.png "cloud-difference-image" { width:auto; max-width:90% }
 
 
