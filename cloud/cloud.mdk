@@ -60,6 +60,12 @@ Sedangkan pada PAAS layer yang dapat dikelola hanya layer aplikasi dan data,
 kemudian pada SAAS developer/pengguna tidak dapat mengelola keseluruhan layanan 
 melainkan hanya dapat menggunakan layanan dalam bentuk pengoperasian aplikasi.
 
+## Perkembangan
+Seiring berkembangnya teknologi mulai ditemukan jenis layanan baru seperti
+MBaaS(Mobile Backend As A Service) CaaS(Communication As A Service) 
+MaaS(Monitoring As A Service) DaaS(Data As A Service) dan masih banyak lagi.
+Komputasi awan akan terus berkembang seiring berkembangnya teknologi internet,
+sehingga memunculkan solusi-solusi yang lebih beragam lagi.
 
 [cloud-difference-image]: images/cloud-difference-image.png "cloud-difference-image" { width:auto; max-width:90% }
 
