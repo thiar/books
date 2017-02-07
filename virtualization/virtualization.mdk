@@ -1,0 +1,34 @@
+Title         : Virtualization
+Author        : You
+Logo          : True
+
+[TITLE]
+
+# Pengertian 
+Virtualisasi adalah teknologi untuk membuat sistem operasi dapat berjalan
+pada lingkungan virtual. Virtualisasi memungkinkan berjalannya beberapa
+sistem operasi pada satu komputer fisik yang sama pada waktu yang bersamaan.
+Sistem operasi yang berjalan pada virtualisasi terisolasi dari
+lingkungan sistem operasi komputer fisiknya, sehingga jika terjadi gangguan 
+pada sistem operasi virtual tidak akan menggangu komputer fisik/host nya.
+Beberapa contoh teknologi virtualisasi antara lain virtualbox, vmware, vagrant
+, dan docker.
+
+# Virtual Machine dan Container
+Teknologi virtualisasi saat ini terbagi menjadi dua jenis yaitu virtual mesin
+dan kontainer. Virtual mesin adalah virtualisasi yang memvirtualkan sistem operasi
+secara keseluruhan, sedangkan kontainer adalah teknologi yang memvirtualisasikan
+aplikasi atau layanan. Contoh virtual mesin antara lain vmware dan virtualbox.
+Sedangkan contoh dari kontainer adalah LXC dan docker.
+Perbedaan antara virtual mesin dan kontainer dijelaskan oleh gambar berikut.
+
+~ Center
+![vm_vs_container]
+~
+
+Terlihat perbedaan antara virtual mesin(kiri) dan kontainer(kanan). 
+Virtual mesin memvirtualkan keseluruhan sistem operasi, sedangkan kontainer
+hanya memvirtualkan aplikasi dan pustaka/library yang diperlukan.
+
+
+[vm_vs_container]: images/vm_vs_container.png "vm_vs_container" { width:auto; max-width:90% }
