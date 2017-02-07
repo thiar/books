@@ -30,5 +30,11 @@ Terlihat perbedaan antara virtual mesin(kiri) dan kontainer(kanan).
 Virtual mesin memvirtualkan keseluruhan sistem operasi, sedangkan kontainer
 hanya memvirtualkan aplikasi dan pustaka/library yang diperlukan.
 
+# Vagrant
+Vagrant adalah kerangka kerja untuk mengelola virtualisasi. Vagrant
+menciptakan lingkungan virtual yang terisolasi. Vagrant sering digunakan oleh
+developer yang bekerja dalam sebuah tim. Vagrant memastikan lingkungan pengembangan
+antar developer sama dan konsisten, sehingga menghilangkan istilah "Ini bekerja pada sistem saya".
+Vagrant juga digunakan pada proses _provisioning_/penyediaan layanan.
 
 [vm_vs_container]: images/vm_vs_container.png "vm_vs_container" { width:auto; max-width:90% }
