@@ -86,7 +86,7 @@ cd vagrant-example
 ``` javascript
 vagrant init
 ```
-  Setelah menjalankan perintah diatas akan dibuat file baru bernama Vagrantfile
+  Setelah menjalankan perintah diatas akan dibuat file baru bernama `Vagrantfile`
 
 4. Tambahkan box baru.
 ``` javascript
@@ -95,19 +95,37 @@ vagrant box add hashicorp/precise64
   Kemudian jika box mendukung lebih dari satu provider
   akan ditanyakan provider yang akan digunakan. Pilih provider virtualbox.
   
-5. Edit file Vagrantfile kemudian ganti vm.box menjadi hashicorp/precise64
+5. Edit file `Vagrantfile` kemudian ganti vm.box menjadi hashicorp/precise64
 ``` javascript
 config.vm.box = "base"
 #menjadi
 config.vm.box = "hashicorp/precise64"
 ```
-  Kemudian simpan file Vagrantfile
+  Kemudian simpan file `Vagrantfile` yang telah diedit sebelumnya.
 
 6. Jalankan virtualisasi
 ``` javascript
 vagrant up
 ```
 
+7. Setelah proses pembuatan virtualisasi selesai, login ke dalam virtualisasi menggunakan perintah `ssh`
+``` javascript
+vagrant ssh
+```
+8. Untuk mematikan virtualisasi gunakan fungsi `halt`
+``` javascript
+vagrant halt
+```
+9. Untuk melihat status virtualisasi gunakan fungsi `status`
+``` javascript
+vagrant status
+```
+10. Untuk menghapus virtualisasi gunakan fungsi `destroy`
+``` javascript
+vagrant destroy
+```
+  Menghapus virtualisasi akan menghapus semua data atau aplikasi di dalam virtualisasi
+  
 
 
 
