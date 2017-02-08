@@ -208,8 +208,20 @@ fungsi `reload` dengan menambahkan flag `--provision` untuk memaksa
 vagrant merestart virtualisasi dan menjalankan script provisioning 
 ketika mesin virtual sedang aktif.
 ``` javascript
-vagrant reload --provison
+vagrant reload --provision
 ```
+5. Cek apakah provisioning berhasil dengan masuk kedalam virtualisasi menggunakan
+`ssh`
+``` javascript
+vagrant ssh
+```
+Cek apakah apache telah berhasil terinstall
+``` javascript
+service apache2 status
+```
+
+Proses provisioning dapat juga menggunakan _configuration management_ seperti
+ansible, chef, atau puppet.
 
 
 
