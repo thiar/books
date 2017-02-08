@@ -196,7 +196,7 @@ apt-get install -y apache2
 ``` javascript
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/precise64"
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision "shell", path: "bootstrap.sh"
 end
 ```
 4. Simpan file Vagrantfile kemudian nyalakan virtualisasi.
@@ -224,6 +224,45 @@ Proses provisioning dapat juga menggunakan _configuration management_ seperti
 ansible, chef, atau puppet.
 
 
+### Port Forwarders
+Pada linkungan produksi, aplikasi yang berjalan di virtualisasi
+harus dapat diakses melalui komputer hostnya. Akses ini dilakukan dengan
+mekanisme _port forwarders_ . _Port forwarders_ bekerja dengan cara meneruskan
+akses dari port komputer host menuju port tertentu pada virtualisasi.
+_Port forwarders_ dapat diilustrasikan dengan gambar berikut.
+
+~ Center
+![port forwarder]
+~
+
+Klien mengakses port 8080/8443 pada komputer host, kemudian akan diteruskan
+menuju port 80/443 pada virtualisasi vagrant.
+Untuk mengaktifkan _port forwarders_, terdapat step-step sebagai berikut:
+
+1. Buka file `Vagrantfile` tambahkan baris berikut.
+``` javascript
+config.vm.network "forwarded_port", guest: 80, host: 8080
+```
+Konfigurasi tersebut akan meneruskan akses dari port 8080 pada host, 
+menuju port 80 pada virtualisasi.
+
+2. Jalankan virtualsisasi.
+   
+``` javascript
+vagrant up
+```
+3. Atau restart vagrant jika virtualisasi sedang berjalan.
+``` javascript
+vagrant reload
+```
+4. Coba akses komputer host menggunakan browser dengan mengetikkan http://ip:port
+pada url.
+
+5. Maka akan muncul halaman apache2 yang telah terinstall pada komputer virtualisasi.
+
+
+
+[port forwarder]: images/port-forwarder.png "port forwarder" { width:auto; max-width:90% }
 
 
 [vm_vs_container]: images/vm_vs_container.png "vm_vs_container" { width:auto; max-width:90% }
