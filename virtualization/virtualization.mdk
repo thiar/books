@@ -155,13 +155,61 @@ mkdir src
 ```
 3. Buat file `index.html` pada folder src, isikan baris berikut
 ``` javascript
-<h1>hello world</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+  <h1>hello world</h1>
+</body>
+</html>
 ```
 4. Jalankan virtualisasi.
 ``` javascript
 vagrant up
 ```
+5. Masuk ke dalam virtualisasi.
+``` javascript
+vagrant ssh
+```
+6. Lakukan perubahan pada file `src/index.html` di komputer host, kemudian
+cek file `index.html` yang berada pada folder `/var/www` di komputer virtual.
+Kedua file akan berisi data yang sama, karena telah tersinkronisasi.
 
+### Provisioning aplikasi pada komputer virtual
+Kita menginginkan komputer virtual yang kita gunakan telah terinstall aplikasi
+aplikasi yang kita butuhkan. Tahapan instalasi dan konfigurasi tersebut sering dikenal dengan sebutan
+_provisioning_. Pada vagrant, _provisioning_ dapat dilakukan dengan mudah. Kita dapat
+membuat script menggunakan bash scripting untuk melakukan _provisioning_. 
+Langkah-langkah untuk melakukan _provisioning_ adalah sebagai berikut:
+
+1. Buat bash script dengan nama `bootsrap.sh` pada folder yang sama dengan vagrant file.
+2. Untuk menginstall apache tuliskan baris berikut pada file `bootsrap.sh`.
+``` javascript
+#!/usr/bin/env bash
+apt-get update
+apt-get install -y apache2
+```
+3. Pada file `Vagrantfile` dibawah baris `config.vm.box = "hashicorp/precise64"` tambahkan baris 
+`config.vm.provision :shell, path: "bootstrap.sh"`.
+``` javascript
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/precise64"
+  config.vm.provision :shell, path: "bootstrap.sh"
+end
+```
+4. Simpan file Vagrantfile kemudian nyalakan virtualisasi.
+``` javascript
+vagrant up
+```
+Jika virtualisasi sudah dibuat dan sedang menyala maka jalankan 
+fungsi `reload` dengan menambahkan flag `--provision` untuk memaksa 
+vagrant merestart virtualisasi dan menjalankan script provisioning 
+ketika mesin virtual sedang aktif.
+``` javascript
+vagrant reload --provison
+```
 
 
 
