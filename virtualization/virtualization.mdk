@@ -69,6 +69,47 @@ vagrant --version
 ```
 
 ### Membuat Virtualisasi
+Setelah berhasil menginstall vagrant, selanjutnya kita akan mencoba membuat
+virtualisasi baru menggunakan provider virtualbox. Langkah-langkah pembuatan virtualisasi baru
+dijelaskan sebagai berikut:
+
+1. Buat folder baru untuk meletakkan konfigurasi.
+  
+``` javascript
+mkdir vagrant-example
+```
+2. Masuk ke dalam folder yang telah di buat.
+``` javascript
+cd vagrant-example
+```
+3. Inisialisasi projek vagrant
+``` javascript
+vagrant init
+```
+  Setelah menjalankan perintah diatas akan dibuat file baru bernama Vagrantfile
+
+4. Tambahkan box baru.
+``` javascript
+vagrant box add hashicorp/precise64
+```
+  Kemudian jika box mendukung lebih dari satu provider
+  akan ditanyakan provider yang akan digunakan. Pilih provider virtualbox.
+  
+5. Edit file Vagrantfile kemudian ganti vm.box menjadi hashicorp/precise64
+``` javascript
+config.vm.box = "base"
+#menjadi
+config.vm.box = "hashicorp/precise64"
+```
+  Kemudian simpan file Vagrantfile
+
+6. Jalankan virtualisasi
+``` javascript
+vagrant up
+```
+
+
+
 
 
 
