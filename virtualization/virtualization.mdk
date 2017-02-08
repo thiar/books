@@ -127,6 +127,41 @@ vagrant destroy
   Menghapus virtualisasi akan menghapus semua data atau aplikasi di dalam virtualisasi
   
 
+### Sinkronisasi folder
+Adakalanya kita ingin mendevelop aplikasi menggunakan editor favorit kita
+seperti `sublimetext`, `netbeans` dan lain sebagainya, tetapi kita ingin
+agar kode-kode aplikasi kita tersebut berada di dalam virtualisasi sehingga
+ketika terjadi perubahan kode maka kode tersebut langsung dipindahkan ke
+dalam virtualisasi atau kita ingin folder di dalam virtualisasi dapat diakses
+melalui komputer host untuk keperluan backup/audit. Hal seperti ini dapat dilakukan menggunakan fitur sinkronisasi
+pada vagrant. Folder yang di sinkronisasi dapat diakses melalui komputer host 
+atau virtual dengan kondisi tersinkronisasi, sehingga ketika terjadi perubahan
+melalui komputer host atau melalui virtualisasi data-data dalam folder tersebut
+tetap sama. Untuk mengaktifkan sinkronisasi folder lakukan langkah-langkah 
+berikut:
+
+1. Buka file `Vagrantfile` ubah baris berikut.
+``` javascript
+# config.vm.synced_folder "../data", "/vagrant_data"
+menjadi
+# config.vm.synced_folder "src/", "/var/www"
+```
+Simpan file `Vagrantfile`. `src/` adalah folder pada komputer host, sedangkan 
+`/var/www` adalah folder pada komputer virtualisasi.
+
+2. Buat folder src di dalam folder projek `vagrant example`
+``` javascript
+mkdir src
+```
+3. Buat file `index.html` pada folder src, isikan baris berikut
+``` javascript
+<h1>hello world</h1>
+```
+4. Jalankan virtualisasi.
+``` javascript
+vagrant up
+```
+
 
 
 
