@@ -30,11 +30,46 @@ Terlihat perbedaan antara virtual mesin(kiri) dan kontainer(kanan).
 Virtual mesin memvirtualkan keseluruhan sistem operasi, sedangkan kontainer
 hanya memvirtualkan aplikasi dan pustaka/library yang diperlukan.
 
+# Provisioning
+_Provisioning_ adalah proses penyediaan aplikasi atau layanan pada komptuasi awan.
+_Provisioning_ seringkali dilakukan menggunakan virtualisasi. Proses _provisioning_
+terdiri dari pembuatan instance virtualisasi, konfigurasi sumber daya, 
+instalasi sistem operasi, instalasi aplikasi atau layanan, dan konfigurasi apliaksi
+atau layanan yang digunakan. Proses _provisioning_ sering kali menggunakan virtualisasi karena
+dalam komputasi awan tidak boleh ada _down time_/layanan mati dalam waktu yang
+cukup lama. Dengan virtualisasi, proses _provisioning_ menjadi lebih cepat dan
+mengurangi down time hingga layanan _cloud_ terkesan memiliki _zero down time_.
+
 # Vagrant
 Vagrant adalah kerangka kerja untuk mengelola virtualisasi. Vagrant
 menciptakan lingkungan virtual yang terisolasi. Vagrant sering digunakan oleh
 developer yang bekerja dalam sebuah tim. Vagrant memastikan lingkungan pengembangan
 antar developer sama dan konsisten, sehingga menghilangkan istilah "Ini bekerja pada sistem saya".
-Vagrant juga digunakan pada proses _provisioning_/penyediaan layanan.
+Vagrant juga digunakan pada proses _provisioning_/penyediaan layanan. 
+Vagrant mendukung banyak provider virtualisasi seperti virtualbox, vmware, aws, dan docker.
+
+## Getting Started
+### Instalasi Vagrant
+Untuk melakukan Instalasi vagrant terlebih dahulu siapkan komputer dengan sistem
+operasi ubuntu 16.04. Instalasi vagrant dapat dilakukan dengan step-step berikut:
+
+1. Install vagrant.
+``` javascript
+apt-get install vagrant
+```
+2. Install virtualbox.
+   
+``` javascript
+apt-get install virtualbox
+```
+3. Jika telah selesai, coba periksa versi vagrant yang telah terinstall
+  
+``` javascript
+vagrant --version
+```
+
+### Membuat Virtualisasi
+
+
 
 [vm_vs_container]: images/vm_vs_container.png "vm_vs_container" { width:auto; max-width:90% }
