@@ -317,15 +317,14 @@ vagrant up
 vagrant reload
 ```
 
-<!-- begin merge (remove this line to resolve the conflict) -->
-~ Begin Remote
-ping alamat ip virtualisasi untuk melihat hasilnya
-~ End Remote
 `ping` alamat ip virtualisasi untuk melihat hasilnya.
 
 # Docker
-Docker adalah virtualisasi berbentuk kontainer. Mesin docker harus terinstall
-terlebih dahulu untuk menjalankan kontainer docker. 
+Docker adalah virtualisasi berbentuk kontainer. Kontainer bekerja lebih
+efisien daripada virtual mesin, karena yang divirtualisasikan hanya aplikasi
+dan library yang dibutuhkan saja. Kontainer lebih hemat memory daripada 
+virtual mesin. Untuk memulai menggunakan docker terlebih dahulu mesin docker harus terinstall
+harus terinstall pada komputer host. 
 ## Getting Started
 Docker dapat diinstall pada sistem operasi yang mendukung virtualisasi secara
 _native_ . Pada sistem operasi windows, minimal windows 10 atau 
@@ -398,6 +397,97 @@ Untuk memastikan instalasi telah berjalan dengan baik, jalankan perintah berikut
 ``` javascript
 docker run hello-world
 ```
+jika berjalan dengan lancar, maka akan menampilkan pesan berikut
+``` javascript
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+```
+
+## Menjalankan aplikasi apache2 sebagai kontainer
+Pada pembahasan sebelumnya kita menjalankan apache2 pada virtualbox menggunakan
+framework vagrant. Aplikasi berjalan pada virtualisasi yang berbentuk virtual
+mesin. Kali ini kita akan menjalankan apache2 sebagai kontainer. Docker 
+telah menyediakan banyak kontainer dengan macam-macam jenis aplikasi.
+Untuk melihat apakah apache2 terdapat pada database docker, jalankan
+perintah berikut.
+``` javascript
+docker search apache2
+```
+Kemudian akan ditampilkan daftar kontainer dengan nama apache2
+``` javascript
+NAME                                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+reinblau/php-apache2                             Apache2 Server for PHP Projects                 12                   [OK]
+tianon/apache2                                                                                   4                    [OK]
+teamrock/apache2                                 TeamRocks Apache2                               3                    [OK]
+ascdc/apache2-php7                               apache2 + php7                                  1                    [OK]
+mad93/apache2-php5                               Apache2 with php5                               1                    [OK]
+mad93/apache2                                    Apache2                                         1                    [OK]
+enonicio/apache2                                 Base Docker image for apache2                   1                    [OK]
+silintl/apache2                                                                                  1                    [OK]
+danielperezr88/apache2                           Apache2+Debian Dockerfile                       0                    [OK]
+sergeyzskw/apache2                               Debian/Apache2                                  0                    [OK]
+mrlesmithjr/apache2                              Build [Docker] image for [Apache2] provisi...   0                    [OK]
+jeffutter/apache2-php                            Docker Image with apache2, php5.5 and php ...   0                    [OK]
+vger/apache2                                     Apache2 base image, based on Debian Jessie.     0                    [OK]
+ascdc/apache2-php56                              apache2-php56                                   0                    [OK]
+pamtrak06/ubuntu14.04-apache2-python             python + OWSLib with apache2 & ubuntu 14.04     0                    [OK]
+szyhf/apache2-python                             An python2.7 web server running by Apache2...   0                    [OK]
+datenbetrieb/apache2                             apache2-webserver                               0                    [OK]
+raphaelnoailles/apache2                                                                          0                    [OK]
+bunchjesse/php5.6-apache2                        PHP 5.6 + Apache2 + A bunch of switches         0                    [OK]
+jecklgamis/apache2                               apache2                                         0                    [OK]
+rethink/testbed-apache2-reverse-proxy-baseline   Basic apache2-based reverse proxy installa...   0                    [OK]
+bunchjesse/php7.0-apache2                        PHP 7.0 + Apache2 + A bunch of switches         0                    [OK]
+shobhitsinghal624/apache2                        Apache2                                         0                    [OK]
+hiracchi/apache2                                 apache2                                         0                    [OK]
+nutsllc/toybox-apache2                           Apache2 Dockerfiles extended the official ...   0                    [OK]
+```
+
+Daftar tersebut adalah kontainer yang dibuat oleh para developer. Untuk mencari
+kontainer apache2 yang dikeluarkan secara resmi oleh vendor, Jalankan perintah
+``` javascript
+docker search httpd
+```
+Kemudian akan ditampilkan kontainer dengan nama httpd
+``` javascript
+NAME                          DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+httpd                         The Apache HTTP Server Project                  910       [OK]       
+centos/httpd                                                                  12                   [OK]
+lolhens/httpd                 Apache httpd 2 Server                           2                    [OK]
+nfqsolutions/httpd            Image of Apache HTTPD 2.4                       1                    [OK]
+microwebapps/httpd-frontend   Httpd frontend allowing simple deployment ...   1                    [OK]
+rgielen/httpd-image-php5      Docker image for Apache httpd with PHP 5 b...   1                    [OK]
+interferex/httpd              Simple HTTPd Server + TC Rate Limiting          0                    [OK]
+publicisworldwide/httpd       The Apache httpd webserver.                     0                    [OK]
+publici/httpd                 httpd:latest                                    0                    [OK]
+crashvb/httpd                 Contains httpd.                                 0                    [OK]
+dionefc/httpd                 httpd docker                                    0                    [OK]
+ourui521314/httpd             httpd dockfile                                  0                    [OK]
+objectstyle/httpd             ObjectStyle HTTPD Image                         0                    [OK]
+superkul/httpd                Centos httpd server                             0                    [OK]
+efrecon/httpd                 A micro-sized httpd. Start serving files i...   0                    [OK]
+rgielen/httpd-image-simple    Docker image for simple Apache httpd based...   0                    [OK]
+openhades/httpd               OpenHades Apache httpd container                0                    [OK]
+ibtech/httpd                  Apache HTTPD padrão da IBTech                   0                    [OK]
+jckrz/httpd-htaccess-ssl      Apache httpd with SSL and .htaccess files ...   0                    [OK]
+steelorbis/httpd              local httpd                                     0                    [OK]
+rgielen/httpd-image-drush     Apache HTTPD + Drupal Shell Docker image b...   0                    [OK]
+solsson/httpd                 Derivatives of the official httpd image         0                    [OK]
+learninglayers/httpd                                                          0                    [OK]
+aintohvri/docker-httpd        Apache HTTPD Docker extension for legacy P...   0                    [OK]
+criedl/httpd                  apache2/php + mod_auth_cookie_mysql2            0                    [OK]
+```
+Terdapat hasil pencarian dengan Name httpd dan official ok, berarti kontainer/image
+tersebut adalah image resmi yang dikeluarkan oleh vendor.
+Untuk menjalankan kontainer apache2, ikuti langkah-langkah berikut:
+
+1. Download image apache2 httpd.
+``` javascript
+  docker pull httpd
+```
+2. Bread.
+3. Basil.
+ 
 
 
 <!-- end merge -->
