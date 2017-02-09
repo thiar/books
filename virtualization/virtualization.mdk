@@ -518,6 +518,14 @@ docker run --name apache-kita -p 8080:80 -d httpd
 docker rm apache-kita
 ```
 
+## Volume Management pada Docker
+Docker tidak menyimpan state atau data apapun di dalam kontainer. Sehingga
+jika kontainer mati kemudian dinyalakan lagi maka state akan kembali seperti semula.
+Semua perubahan tidak tersimpan, berbeda dengan virtual mesin yang menyimpan
+data dan state. Untuk mengatasi hal tersebut, docker memiliki fungsi `volume`
+untuk menyimpan perubahan data pada komputer hostnya. Sehingga ketika kontainer
+mati atau dihapus, data tetap tersimpan di komputer host dan dapat digunakan kembali
+oleh kontainer yang sama atau berbeda.
 
 
 <!-- end merge -->
