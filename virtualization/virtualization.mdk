@@ -211,7 +211,7 @@ ketika mesin virtual sedang aktif.
 vagrant reload --provision
 ```
 5. Cek apakah provisioning berhasil dengan masuk kedalam virtualisasi menggunakan
-`ssh`
+`ssh`.
 ``` javascript
 vagrant ssh
 ```
@@ -525,10 +525,42 @@ Semua perubahan tidak tersimpan, berbeda dengan virtual mesin yang menyimpan
 data dan state. Untuk mengatasi hal tersebut, docker memiliki fungsi `volume`
 untuk menyimpan perubahan data pada komputer hostnya. Sehingga ketika kontainer
 mati atau dihapus, data tetap tersimpan di komputer host dan dapat digunakan kembali
-oleh kontainer yang sama atau berbeda.
+oleh kontainer yang sama atau berbeda. Untuk mengaktifkan eksternal volume
+ikuti langkah-langkah berikut:
+
+1. Matikan dan hapus kotnainer yang telah kita buat sebelumnya.
+   
+``` javascript
+docker stop apache-kita
+   docker rm apache-kita
+```
+
+2. Buat folder baru bernama src dan tambahkan file `index.html`.
+   
+``` javascript
+mkdir src
+echo "hello world" >> src/index.html
+```
+
+3. Jalankan kotnainer dengan menambahkan perintah `-v`.
+   
+``` javascript
+docker run --name apache-kita -v "$PWD"/src:/usr/local/apache2/htdocs/ -p 8080:80 -d httpd
+```
+perintah `"$PWD"/src:/usr/local/apache2/htdocs/`, akan menghubungkan
+folder src ke folder `htdocs` pada kontainer. Perintah `"$PWD"` digunakan
+untuk mendapatkan posisi folder saat ini. Jadi jika kita sedang berada 
+pada home user kita, maka `"$PWD"` adalah `/home/user`.
+
+4. Akses kembali apache2 melalui komputer host dengan `localhost:8080`
+
+Volume pada docker sangat berguna, karena kontainer tidak mampu menyimpan state
+atau data. Sehingga jika menggunakan kontainer untuk menjalankan aplikasi
+penyimpanan data seperti database, maka kita harus menggunakan volume
+untuk menjaga data kita tetap tersimpan saat kontainer dihapus atau dimatikan.
 
 
-<!-- end merge -->
+
 
 [port forwarder]: images/port-forwarder.png "port forwarder" { width:auto; max-width:90% }
 
