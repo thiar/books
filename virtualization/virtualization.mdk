@@ -261,6 +261,63 @@ pada url.
 5. Maka akan muncul halaman apache2 yang telah terinstall pada komputer virtualisasi.
 
 
+### Static Local IP
+Ketika banyak virtualisasi yang dijalankan, kita membutuhkan alamat
+IP lokal agar antar virtualisasi dapat saling berkomunikasi. IP lokal
+hanya dapat diakses oleh komputer host dan virtualisasi pada komputer host
+yang sama. Untuk menentukan alamat IP pada virtualisasi lakukan step-step
+berikut:
+
+1. Buka file `Vagrantfile` edit baris berikut.
+  
+``` javascript
+config.vm.network "private_network", ip: "192.168.2.2"
+```
+`192.168.2.2` adalah alamat ip lokal dari virtualisasi yang akan dijalankan.
+
+2. Simpan file `Vagrantfile` dan jalankan virtualisasi.
+   
+``` javascript
+vagrant up
+```
+3. Jika virutalisasi sedang berjalan, maka jalankan fungsi `reload`.
+``` javascript
+vagrant reload
+```
+
+Untuk pemilihan IP, pilihlah ip dengan angka belakang **2-254**, karena ip dengan
+angka belakang **1** sudah digunakan oleh komputer host sebagai router antar virtualisasi.
+Alamat IP lokal antar virtualisasi tidak perlu harus dalam subnet yang sama.
+Alamat IP pada subnet yang berbeda tetap bisa berkomunikasi, karena mekanisme
+_routing_ telah diatur oleh vagrant.
+
+### Bridged IP
+Pada kondisi tertentu dibutuhkan virtualisasi yang dapat di akses dari luar,
+contohnya pada layanan _cloud_ vps(_virtual private server_). Untuk membuat
+virtualisasi dapat diakses dari luar, dibutuhkan mekanisme yang disebut _bridging_ . 
+Mekanisme _bridging_ ini telah ditangani oleh vagrant. Untuk mengaktifkan
+fungsi _bridged_ ikuti langkah-langkah berikut:
+
+1. Buka file `Vagrantfile` edit baris berikut.
+   Untuk konfigurasi IP DHCP pada virtualiasasi gunakan konfigurasi berikut
+``` javascript
+config.vm.network "public_network"
+```
+Untuk konfigurasi IP static pada virtualiasasi gunakan konfigurasi berikut
+``` javascript
+config.vm.network "public_network", ip: "10.151.36.225"
+```
+2. Simpan file `Vagrantfile` dan jalankan virtualisasi.
+   
+``` javascript
+vagrant up
+```
+3. Jika virutalisasi sedang berjalan, maka jalankan fungsi `reload`.
+``` javascript
+vagrant reload
+```
+
+ping alamat ip virtualisasi untuk melihat hasilnya
 
 [port forwarder]: images/port-forwarder.png "port forwarder" { width:auto; max-width:90% }
 
