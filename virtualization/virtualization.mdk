@@ -394,6 +394,10 @@ sudo usermod -aG docker username
 ganti username dengan nama user yang akan diberi akses. Untuk melihat perubahan
 logout dan login kembali dengan user tersebut.
 
+Untuk memastikan instalasi telah berjalan dengan baik, jalankan perintah berikut
+``` javascript
+docker run hello-world
+```
 
 
 <!-- end merge -->
