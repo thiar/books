@@ -143,12 +143,9 @@ berikut:
 1. Buka file `Vagrantfile` ubah baris berikut.
 ``` javascript
 # config.vm.synced_folder "../data", "/vagrant_data"
-```
 menjadi
-``` javascript
 # config.vm.synced_folder "src/", "/var/www"
 ```
-
 Simpan file `Vagrantfile`. `src/` adalah folder pada komputer host, sedangkan 
 `/var/www` adalah folder pada komputer virtualisasi.
 
@@ -320,6 +317,10 @@ vagrant up
 vagrant reload
 ```
 
+<!-- begin merge (remove this line to resolve the conflict) -->
+~ Begin Remote
+ping alamat ip virtualisasi untuk melihat hasilnya
+~ End Remote
 `ping` alamat ip virtualisasi untuk melihat hasilnya.
 
 # Docker
@@ -376,8 +377,26 @@ sudo apt-get install -y docker-engine
 sudo systemctl status docker
 ```
 
+### Menjalankan docker tanpa akses sudo
+Pada dasarnya docker hanya bisa dijalankan menggunakan akses _root_ atau
+_sudo_. Tetapi pada beberapa kasus kita ingin menjalankan docker dengan
+hak akses yang tidak terlalu tinggi, untuk menjaga keamanan pada sistem.
+Jalankan perintah berikut untuk memberi akses pada user.
+``` javascript
+sudo usermod -aG docker $(whoami)
+```
+Perintah tersebut akan memberikan hak akses untuk menjalankan docker
+kepada user yang sedang login. Untuk memberikan akses ke user khusus
+gunakan perintah.
+``` javascript
+sudo usermod -aG docker username
+```
+ganti username dengan nama user yang akan diberi akses. Untuk melihat perubahan
+logout dan login kembali dengan user tersebut.
 
 
+
+<!-- end merge -->
 
 [port forwarder]: images/port-forwarder.png "port forwarder" { width:auto; max-width:90% }
 
