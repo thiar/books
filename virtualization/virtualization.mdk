@@ -143,9 +143,12 @@ berikut:
 1. Buka file `Vagrantfile` ubah baris berikut.
 ``` javascript
 # config.vm.synced_folder "../data", "/vagrant_data"
+```
 menjadi
+``` javascript
 # config.vm.synced_folder "src/", "/var/www"
 ```
+
 Simpan file `Vagrantfile`. `src/` adalah folder pada komputer host, sedangkan 
 `/var/www` adalah folder pada komputer virtualisasi.
 
@@ -317,7 +320,64 @@ vagrant up
 vagrant reload
 ```
 
-ping alamat ip virtualisasi untuk melihat hasilnya
+`ping` alamat ip virtualisasi untuk melihat hasilnya.
+
+# Docker
+Docker adalah virtualisasi berbentuk kontainer. Mesin docker harus terinstall
+terlebih dahulu untuk menjalankan kontainer docker. 
+## Getting Started
+Docker dapat diinstall pada sistem operasi yang mendukung virtualisasi secara
+_native_ . Pada sistem operasi windows, minimal windows 10 atau 
+windows 8 dengan mengaktifkan fitur Hyper-V. Pada sistem operasi
+linux seperti debian/ubuntu telah mendukung virtualisasi sehingga dapat menjalankan
+mesin docker. 
+### Instalasi Docker-engine
+Untuk mendapatkan rilis terbaru dan paling stabil, disarankan
+menggunakan ubuntu 16.04. Instalasai docker-engine dapat dilakukan dengan
+mengikuti langkah-langkah berikut:
+
+1. Tambahkan GPG key untuk mendapatkan repository docker terbaru.
+``` javascript
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+```
+Tambahkan APT repostory
+``` javascript
+sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+```
+
+2. Update repository.
+``` javascript
+sudo apt-get update
+```
+
+3. Pastkan repository sudah benar.
+``` javascript
+apt-cache policy docker-engine
+```
+akan terlihat seperti
+``` javascript
+docker-engine:
+  Installed: (none)
+  Candidate: 1.11.1-0~xenial
+  Version table:
+     1.11.1-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.0-0~xenial 500
+        500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+```
+
+4. Install mesin docker.
+``` javascript
+sudo apt-get install -y docker-engine
+```
+
+5. cek status apakah instalasi telah berhasil
+``` javascript
+sudo systemctl status docker
+```
+
+
+
 
 [port forwarder]: images/port-forwarder.png "port forwarder" { width:auto; max-width:90% }
 
