@@ -309,6 +309,11 @@ vagrant reload
 
 `ping` alamat ip virtualisasi untuk melihat hasilnya.
 
+## Lebih Lanjut
+### Share Vagrant Environtment
+### Export custom box
+### Upload custom box ke HasiCorp's Altas cloud
+
 # Docker
 Docker adalah virtualisasi berbentuk kontainer. Kontainer bekerja lebih
 efisien daripada virtual mesin, karena yang divirtualisasikan hanya aplikasi
@@ -549,8 +554,11 @@ atau data. Sehingga jika menggunakan kontainer untuk menjalankan aplikasi
 penyimpanan data seperti database, maka kita harus menggunakan volume
 untuk menjaga data kita tetap tersimpan saat kontainer dihapus atau dimatikan.
 
+## Lebih Lanjut
+### Dockerfile
+### Upload kontainer ke dockerhub
 
-# Mengakses Docker dengan framework Vagrant
+# Mengelola Docker dengan framework Vagrant
 Vagrant adalah framework untuk virtualisasi, pada pembahasan sebelumnya
 kita menggunakan vagrant dengan virtualbox sebagai provider default.
 Vagrant juga mendukung provider lain seperti docker, jadi kita bisa 
@@ -623,8 +631,7 @@ end
 ```
 Variabel `pwd` digunakan untuk mendapatkan `path` dari folder kita saat ini.
 Kemudian pada baris `d.volumes` mendefinisikan volume yang akan digunakan
-oleh kontainer. `src` adalah folder tempat file `index.html kita berada,
-tambahan `pwd` digunakan untuk memberitahu docker alamat absolut dari folder
+oleh kontainer. Folder `src` adalah folder tempat file `index.html` kita berada, tambahan `pwd` digunakan untuk memberitahu docker alamat absolut dari folder
 src, karena docker hanya menerima alamat absolut.
 
 3. Simpan file `Vagrantfile`, karena kontainer berbeda dengan virtual mesin,
@@ -638,6 +645,18 @@ vagrant up --provider=docker
 Akses `localhost:8080` untuk melihat perubahan yang terjadi.
 
 
+# Lebih Lanjut
+## Menjalankan Multiple virtual mesin pada Vagrant
+## Menjalankan Multiple kontainer pada Vagrant
+
+# Exercise
+
+1. Install apache2 + php7 + opcache + laravel
+2. Install nginx + hhvm + php-version page
+3. Install nginx + php7-fpm + php-version page
+4. Install mariadb (allow remote connection for user `"cloud"`, password `"cloud!"` 
+   to database `"vagrant-cloud"` from subnet `"10.0.0.0/8"`)
+5. Install nodejs + npm + pm2 + hello world page
 
 
 
