@@ -1,0 +1,21 @@
+Title         : Load Balancing
+Author        : You
+Logo          : True
+
+[TITLE]
+
+# Pengertian
+_Load balancing_ adalah suatu mekanisme penyeimbangan beban yang bekerja
+dengan cara membagi beban pekerjaan. _Load balancer_ adalah aplikasi atau alat yang bertugas untuk melakukan _load balancing_ . _Load balancer_ dapat
+meggunakan berbagai macam algoritma _load balancing_ yang bertujuan untuk membagi beban pekerjaan seadil-adilnya. Kenapa dibutuhkan _load balancing_ pada komputasi awan ?, Komputasi awan adalah sebuah layanan yang menjamin ketersediaan layanaannya setiap saat. Pengguna layanan komputasi awan selalu bertambah dari waktu ke waktu. Untuk menangani banyaknya pengguna yang mengakses layanan pada satu waktu dan menjaga layanan tetap tersedia setiap saat, komputasi awan membutuhkan lebih dari satu komputer untuk memasang layanannya. Kenapa dibutuhkan banyak server?, kenapa kita tidak menggunakan satu server yang memiliki spesifikasi sangat tinggi?. Pada gambar berikut akan dijelaskan analogi perkembangan komputer saat ini.
+
+~ Center
+![cluster]
+~
+
+
+
+Pada perkembangan komputer saat ini super komputer seperti _Mainframe_ dapat dikalahkan dengan komputer-komputer berspesifikasi rendah yang membentuk sebuah cluster komputer. Peletakkan layanan pada beberapa server disebut dengan istilah _redundancy_. Dengan layanan yang tersedia di banyak server, dibutuhkan mekanisme pembagian beban untuk memberikan beban yang seimbang pada setiap server. Dengan meletakkan layanan pada beberapa server setiap permintaan pengguna bisa ditangani oleh layanan _cloud_.
+
+
+[cluster]: images/cluster.jpg "cluster" { width:auto; max-width:90% }
