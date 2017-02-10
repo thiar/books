@@ -149,31 +149,21 @@ menjadi
 Simpan file `Vagrantfile`. `src/` adalah folder pada komputer host, sedangkan 
 `/var/www` adalah folder pada komputer virtualisasi.
 
-2. Buat folder src di dalam folder projek `vagrant example`
+2. Buat folder src di dalam folder projek `vagrant example` kemudian tambahkan
+   file `index.html`
 ``` javascript
 mkdir src
+echo "hello world" >> src/index.html
 ```
-3. Buat file `index.html` pada folder src, isikan baris berikut
-``` javascript
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-  <h1>hello world</h1>
-</body>
-</html>
-```
-4. Jalankan virtualisasi.
+3. Jalankan virtualisasi.
 ``` javascript
 vagrant up
 ```
-5. Masuk ke dalam virtualisasi.
+4. Masuk ke dalam virtualisasi.
 ``` javascript
 vagrant ssh
 ```
-6. Lakukan perubahan pada file `src/index.html` di komputer host, kemudian
+5. Lakukan perubahan pada file `src/index.html` di komputer host, kemudian
 cek file `index.html` yang berada pada folder `/var/www` di komputer virtual.
 Kedua file akan berisi data yang sama, karena telah tersinkronisasi.
 
@@ -558,6 +548,95 @@ Volume pada docker sangat berguna, karena kontainer tidak mampu menyimpan state
 atau data. Sehingga jika menggunakan kontainer untuk menjalankan aplikasi
 penyimpanan data seperti database, maka kita harus menggunakan volume
 untuk menjaga data kita tetap tersimpan saat kontainer dihapus atau dimatikan.
+
+
+# Mengakses Docker dengan framework Vagrant
+Vagrant adalah framework untuk virtualisasi, pada pembahasan sebelumnya
+kita menggunakan vagrant dengan virtualbox sebagai provider default.
+Vagrant juga mendukung provider lain seperti docker, jadi kita bisa 
+menjalankan kontainer docker melalui framework vagrant.
+ 
+## Menjalankan kontainer docker melalui vagrant
+Untuk mulai menggunakan vagrant dengan provider docker ikuti langkah-langkah berikut:
+
+1. Buat folder baru, sebagai folder kerja kita, kemudian masuk kedalam folder tersebut.
+   
+``` javascript
+mkdir vagrant-docker
+   cd vagrant-docker
+```
+
+2. Inisialisasi project vagrant.
+   
+``` javascript
+vagrant init
+```
+
+3. Buka file `Vagrantfile`, karena kita tidak menggunakan provider virtualbox lagi, maka baris `config.vm.box`
+   bisa kita hapus atau di nonaktifkan.
+   
+``` javascript
+config.vm.box = "base"
+```
+menjadi
+``` javascript
+# config.vm.box = "base"
+```
+
+4. Tambahkan baris berikut untuk menjalankan kontainer.
+``` javascript
+  config.vm.provider "docker" do |d|
+    d.image = "httpd"
+    d.ports = ["8080:80"]
+  end
+```
+5. Simpan file `Vagrantfile` dan jalankan vagrant
+``` javascript
+vagrant up --provider=docker
+```
+fungsi `--provider` dibutuhkan untuk menentukan provider yang akan kita gunakan.
+
+Untuk mengetahui apakah kontainer sudah berjalan dengan benar jalankan
+perintah `vagrant status` atau `docker ps`. Akses `localhost:8080` untuk
+mengetahui apakah port forwarding telah berjalan dengan benar.
+
+## Konfigurasi Volume Docker pada Vagrant
+Seperti dijelaskan sebelumnya, kontainer tidak menyimpan state atau data apapun
+sehingga kita membutuhkan volume untuk menyimpan data-data kita. Pada vagrant
+volume dapat dikonfigurasi menggunakan perintah `"synced_folder"` seperti sebelumnya.
+Tetapi disini kita akan menggunakan perintah `"volumes"` yang disediakan khusus untu
+provider docker.
+
+1. Buat folder `src` dan file `index.html`
+``` javascript
+   mkdir src
+   echo "hello vagrant docker" >> src/index.html
+```
+2. Buka fle `Vagrantfile`, tambahkan beberapa baris hingga menjadi seperti ini.
+``` javascript
+pwd = File.dirname(__FILE__)
+config.vm.provider "docker" do |d|
+  d.image = "httpd"
+  d.volumes = [pwd+"/src/:/usr/local/apache2/htdocs/"]
+  d.ports = ["8000:80"]
+end
+```
+Variabel `pwd` digunakan untuk mendapatkan `path` dari folder kita saat ini.
+Kemudian pada baris `d.volumes` mendefinisikan volume yang akan digunakan
+oleh kontainer. `src` adalah folder tempat file `index.html kita berada,
+tambahan `pwd` digunakan untuk memberitahu docker alamat absolut dari folder
+src, karena docker hanya menerima alamat absolut.
+
+3. Simpan file `Vagrantfile`, karena kontainer berbeda dengan virtual mesin,
+maka perubahan hanya akan diterapkan jika kontainer dihapus dan dibuat dari awal. Maka
+kontainer harus dihapus dan dijalankan ulang.
+``` javascript
+vagrant destroy
+vagrant up --provider=docker
+```
+
+Akses `localhost:8080` untuk melihat perubahan yang terjadi.
+
 
 
 
