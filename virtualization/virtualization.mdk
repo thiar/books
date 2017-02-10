@@ -678,16 +678,28 @@ Laravel harus dapat diakses melalui port 8080 dari komputer host
 
    Codeigniter harus dapat diakses melalui port 8000.
 
-4. Install mariadb (allow remote connection for user `"cloud"`, password `"cloud!"` 
-   to database `"vagrant-cloud"` from subnet `"10.0.0.0/8"`)
+4. Buat vagrant virtualbox dan lakukan provisioning  
+   * mariadb
+   
+   Lakukan konfigurasi mariadb berikut saat provisioning
+   * Buat user `"cloud"`dengan password `"cloud!"`
+   * Buat database `"vagrant-cloud"` dan beri akses ke user `"cloud"`
+   * Perbolehkan akses user `"cloud"` dari subnet `"10.0.0.0/8"`.
+   
+Untuk setiap permasalahan yang akan dipecahkan buatlah `Vagrantfile` 
+masing-masing beserta script `provisioning`.
+
 
 ## Vagrant docker
 
 1. Buat kontainer bernama `mysql-kita` dengan base image `mysql` menggunakan vagrant dan docker.
-2. Set kontainer `mysql-kita` password, denggan mengeset variabel `MYSQL_ROOT_PASSWORD` = `"cloud!"`.
+
+2. Set password kontainer `mysql-kita`, denggan mengeset variabel `MYSQL_ROOT_PASSWORD` = `"cloud!"`.
+
 3. Buat folder `db` pada komputer host dan atur konfigurasi folder volume yang akan digunakan oleh kontainer `mysql-kita`
    ke folder `db`.
 
+Buatlah `Vagrantfile` untuk menyelesaikan ketiga permasalahan tersebut
 
 
 
