@@ -1,36 +1,75 @@
-Title         : Welcome
-Author        : You
+Title         : Silabus dan daftar isi
+Author        : Thiar Hasbiya Ditanaya
 Logo          : True
 
 
 [TITLE]
 
-[TOC]
+Capaian Pembelajaran:
+
+1. Mahasiswa mengerti _provisioning_, _redundancy_, _monitoring_ dan _configruation_
+   pada lingkungan komputasi awan.
+   
+2. Mahasiswa mampu melakukan _provisioning_, _redundancy_, _monitoring_ dan _configruation_
+   untuk komputasi awan skala kecil.
+   
+3. Mahasiswa mengerti bagaimana membuat layanan komputasi awan dengan 
+   ketersediaan tinggi.
+
+4. Mahasiswa mampu menggunakan _tools_ atau kakas bantu untuk mempermudah
+   pengelolaah sumber daya pada komputasi awan.
+   
+5. Mahasiswa mampu membuat layanan komputasi awan skala kecil.
+
+<div>
+  <h1>Daftar Isi</h1>
+</div>
 
 
 # Pengertian
 # Virtualization
+## Pengertian
+## Virtual Machine dan Container
+## Provisioning
 ## Vagrant
-### Pengertian
-### Cara Install
-### Contoh
+### Getting Started
+* Instalasi Vagrant
+* Membuat Virtualisasi
+* Sinkronisasi folder
+* Provisioning aplikasi pada komputer virtual
+* Port Forwarders
+* Static Local IP
+* Bridged IP
+
+### Lebih Lanjut
+* Share Vagrant Environtment
+* Export custom box
+* Upload custom box ke HasiCorp's Altas cloud
+
 ## Docker
-### Pengertian
-### Cara Install
-### Contoh
+### Getting Started
+* Instalasi Docker-engine
+* Menjalankan docker tanpa akses sudo
+
+### Menjalankan aplikasi apache2 sebagai kontainer
+### Volume Management pada Docker
+### Lebih Lanjut
+* Dockerfile
+* Upload kontainer ke dockerhub
+
 # Load Balancing
+## Redundancy
 ## Haproxy
-### Pengertian
-### Cara Install
-### Contoh
+
 ## Nginx
-### Pengertian
-### Cara Install
-### Contoh
+
 # Distributed Database
-## SQL (Mysql/Maridb)
-### Master Slave
-### Multi Master
+## Distributed System
+## SQL
+### MySql/Mariadb
+* Master Slave
+* Multi Master
+
 ## No SQL
 ### Mongodb
 # Monitoring
