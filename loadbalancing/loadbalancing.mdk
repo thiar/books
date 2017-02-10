@@ -13,9 +13,16 @@ meggunakan berbagai macam algoritma _load balancing_ yang bertujuan untuk membag
 ![cluster]
 ~
 
+Pada perkembangan komputer saat ini super komputer seperti _Mainframe_ dapat dikalahkan dengan komputer-komputer berspesifikasi rendah yang membentuk sebuah cluster komputer. Peletakkan layanan pada beberapa server disebut dengan istilah _redundancy_. Dengan layanan yang tersedia di banyak server, dibutuhkan mekanisme pembagian beban untuk memberikan beban yang seimbang pada setiap server. Dengan meletakkan layanan pada beberapa server dan pembagian beban yang optimal, setiap permintaan pengguna bisa ditangani oleh layanan _cloud_ dengan efisien. Beberapa contoh _tools_ atau aplikasi untuk melakukan _load balancing_ adalah Haproxy, nginx dan aws ELB.
 
+# Redundancy
+Redundancy adalah sebuah istilah untuk penempatan lebih dari satu server yang menjalankan layanan atau aplikasi yang sama. Redundancy digunakan untuk keperluan _load balancing _atau backup sistem. Bagaimana cara melakukan _redundancy_ ?, Pada layanan _cloud_ yang berskala cukup besar, _redundancy_ tidak dilakukan secara manual. _Redundancy_ dilakukan secara otomatis dengan metode _orchestration_. Setelah _redundancy_ berhasil dilakukan load balancer harus memperbarui konfigurasinya, sehingga server baru dapat segera digunakan dalam mekanisme pembagian beban/_load balancing_.    
 
-Pada perkembangan komputer saat ini super komputer seperti _Mainframe_ dapat dikalahkan dengan komputer-komputer berspesifikasi rendah yang membentuk sebuah cluster komputer. Peletakkan layanan pada beberapa server disebut dengan istilah _redundancy_. Dengan layanan yang tersedia di banyak server, dibutuhkan mekanisme pembagian beban untuk memberikan beban yang seimbang pada setiap server. Dengan meletakkan layanan pada beberapa server setiap permintaan pengguna bisa ditangani oleh layanan _cloud_.
+# Nginx
+Sebelumnya kita sudah menginstall apache2 dan httpd pada vagrant. Apache2 dan httpd adalah aplikasi web server, yang berguna sebagai platform untuk menjalankan aplikasi web. Nginx juga termasuk aplikasi web server. Nginx memiliki fitur load balancing yang cukup baik dan berjalan dengan konsumsi memori lebih sedikit dari apache2. Sehingga nginx sering digunakan sebagai _load balancer_. Nginx bekerja baik dengan aplikasi _FastCGI_ seperti php-fpm dan hhvm.
+
+## Getting Started
+### Instalasi Nginx pada Vagrant
 
 
 [cluster]: images/cluster.jpg "cluster" { width:auto; max-width:90% }
