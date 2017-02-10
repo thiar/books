@@ -98,9 +98,13 @@ vagrant box add hashicorp/precise64
 5. Edit file `Vagrantfile` kemudian ganti vm.box menjadi hashicorp/precise64
 ``` javascript
 config.vm.box = "base"
-#menjadi
+```
+menjadi
+``` javascript
 config.vm.box = "hashicorp/precise64"
 ```
+
+
   Kemudian simpan file `Vagrantfile` yang telah diedit sebelumnya.
 
 6. Jalankan virtualisasi
