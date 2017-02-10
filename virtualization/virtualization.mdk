@@ -650,13 +650,44 @@ Akses `localhost:8080` untuk melihat perubahan yang terjadi.
 ## Menjalankan Multiple kontainer pada Vagrant
 
 # Exercise
+Untuk memperdalam pemahaman, selesaikan permasalahan-permasalahan berikut
+mengunakan vagrant virtualbox dan docker.
+## Vagrant virtualbox
 
-1. Install apache2 + php7 + opcache + laravel
-2. Install nginx + hhvm + php-version page
-3. Install nginx + php7-fpm + php-version page
+1. Buat vagrant virtualbox dan lakukan provisioning 
+   * apache2 
+   * php7 + opcache 
+   * laravel
+   
+Laravel harus dapat diakses melalui port 8080 dari komputer host
+
+2. Buat vagrant virtualbox dan lakukan provisioning 
+   * nginx
+   * hhvm
+
+   Buat sinkronisasi folder `src` ke `var/www`, folder `src` berisi file `index.php` yang akan menampilkan php version
+
+   Halaman php version harus dapat diakses melalui port 8000
+
+3. Buat vagrant virtualbox dan lakukan provisioning 
+   * nginx 
+   * php7-fpm
+
+   Buat sinkronisasi folder `src` ke `var/www`, folder `src` berisi aplikasi
+   `codeigniter`.
+
+   Codeigniter harus dapat diakses melalui port 8000.
+
 4. Install mariadb (allow remote connection for user `"cloud"`, password `"cloud!"` 
    to database `"vagrant-cloud"` from subnet `"10.0.0.0/8"`)
-5. Install nodejs + npm + pm2 + hello world page
+
+## Vagrant docker
+
+1. Buat kontainer bernama `mysql-kita` dengan base image `mysql` menggunakan vagrant dan docker.
+2. Set kontainer `mysql-kita` password, denggan mengeset variabel `MYSQL_ROOT_PASSWORD` = `"cloud!"`.
+3. Buat folder `db` pada komputer host dan atur konfigurasi folder volume yang akan digunakan oleh kontainer `mysql-kita`
+   ke folder `db`.
+
 
 
 
