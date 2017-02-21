@@ -7,7 +7,17 @@ Logo          : True
 # Pengertian
 _Load balancing_ adalah suatu mekanisme penyeimbangan beban yang bekerja
 dengan cara membagi beban pekerjaan. _Load balancer_ adalah aplikasi atau alat yang bertugas untuk melakukan _load balancing_ . _Load balancer_ dapat
-meggunakan berbagai macam algoritma _load balancing_ yang bertujuan untuk membagi beban pekerjaan seadil-adilnya. Kenapa dibutuhkan _load balancing_ pada komputasi awan ?, Komputasi awan adalah sebuah layanan yang menjamin ketersediaan layanaannya setiap saat. Pengguna layanan komputasi awan selalu bertambah dari waktu ke waktu. Untuk menangani banyaknya pengguna yang mengakses layanan pada satu waktu dan menjaga layanan tetap tersedia setiap saat, komputasi awan membutuhkan lebih dari satu komputer untuk memasang layanannya. Kenapa dibutuhkan banyak server?, kenapa kita tidak menggunakan satu server yang memiliki spesifikasi sangat tinggi?. Pada gambar berikut akan dijelaskan analogi perkembangan komputer saat ini.
+meggunakan berbagai macam algoritma _load balancing_ yang bertujuan untuk membagi beban pekerjaan seadil-adilnya. 
+Minimal arsitektur _load balancing_ adalah sebagai berikut:
+
+~ Center
+![nginx-appserver]
+~
+
+
+[nginx-appserver]: images/nginx-appserver.png "nginx-appserver" { width:auto; max-width:90% }
+
+Kenapa dibutuhkan _load balancing_ pada komputasi awan ?, Komputasi awan adalah sebuah layanan yang menjamin ketersediaan layanaannya setiap saat. Pengguna layanan komputasi awan selalu bertambah dari waktu ke waktu. Untuk menangani banyaknya pengguna yang mengakses layanan pada satu waktu dan menjaga layanan tetap tersedia setiap saat, komputasi awan membutuhkan lebih dari satu komputer untuk memasang layanannya. Kenapa dibutuhkan banyak server?, kenapa kita tidak menggunakan satu server yang memiliki spesifikasi sangat tinggi?. Pada gambar berikut akan dijelaskan analogi perkembangan komputer saat ini.
 
 ~ Center
 ![cluster]
@@ -23,6 +33,47 @@ Sebelumnya kita sudah menginstall apache2 dan httpd pada vagrant. Apache2 dan ht
 
 ## Getting Started
 ### Instalasi Nginx pada Vagrant
-
+Instalasi nginx akan dilakukan menggunakan vagrant, pada awalnya instalasi akan dilakukan menggunakan vagrant virtual machine, nantinya ketika konfigurasi telah berhasil dilakukan maka nginx akan di buat ke dalam kontainer agar mempermudah proses dekomposisi. Buatlah folder vagrant-nginx sebagai folder tempat kita bekerja. Lakukan `vagrant init`, tambahkan box ubuntu 16.04. Lakukan port forwarders untuk nginx, dengan port guest 80 dan port host 8080. Buatlah file `bootsrap.sh` untuk melakukan provisioning, dan isikan baris seperti berikut:
+``` javascript
+sudo apt-get update
+sudo apt-get install -y nginx
+```
+Konfigurasi file `Vagrantfile`, tambahkan shell provisioning dengan file bootstrap.sh. Kemudian jalankan `vagrant up --provision` untuk menjalankan virtual mesin. Coba akses ke nginx dengan  menggunakan browser dengan mengetikkan `localhost` pada url `localhost.
 
 [cluster]: images/cluster.jpg "cluster" { width:auto; max-width:90% }
+
+
+## Load Balancing dengan HTTP Proxy Pass
+Load balancing menggunakan HTTP Proxy termasuk metode yang paling umum digunakan. Load balancing bekerja dengan cara mengarahkan trafik yang masuk pada Load Balancer ke web server yang menjalankan aplikasi. 
+
+### Instalasi apache2 sebagai worker
+Buat folder baru bernama vagrant-apache2, kemudian jalankan `vagrant init`. Tambahkan box ubuntu 16.04 kemudian buatlah file `bootstrap.sh`. Tuliskan baris berikut:
+``` javascript
+sudo apt-get update
+sudo apt-get install -y apache2 php5
+```
+Lakukan konfigurasi pada file `Vagrantfile`, tambahkan shell provisioning dengan file bootstrap.sh. Jalankan `vagrant up --provision` untuk menjalankan virtual mesin.
+
+## Load Balancing dengan FastCGI Proxy Pass.
+Berbeda dengan HTTP proxy, pada FastCGI Pass request akan diarahkan langsung ke FastCGI yang akan mengeksekusi program dari aplikasi web yang dijalankan.
+
+### Instalasi php-fpm sebagai worker
+php-fpm adalah eksekutor php berbasis fastCGI. Buatlah foler baru bernama vagrant-php-fpm, kemudian jalankan `vagrant init`. Tambahkan box ubuntu 16.04 kemudian buatlah file `bootstrap.sh`. Tuliskan baris berikut:
+``` javascript
+sudo apt-get update
+sudo apt-get install -y php5-fpm
+```
+Lakukan konfigurasi pada file `Vagrantfile`, tambahkan shell provisioning dengan file bootstrap.sh. Jalankan `vagrant up --provision` untuk menjalankan virtual mesin.
+
+
+### Konfigurasi php-fpm
+File konfigurasi pool pada php-fpm terdapat pada folder `/etc/php5/fpm/pool.d/`. Pool adalah instance dari php-fpm yang berjalan untuk melakukan pekerjaannya. Pool bisa lebih dari satu, secara default terdapat satu pool dengan nama file `www.conf`.
+Edit file `www.conf`.
+``` javascript
+nano /etc/php5/fpm/pool.d/www.conf
+```
+Cari dan ganti baris listen, menjadi sebagai berikut.
+``` javascript
+listen = 9000
+```
+Baris tersebut memerintahkan fpm untuk berjalan pada port `9000` daripada pada file sock. Hal ini berguna untuk pengaksesan fpm dari nginx yang berada pada komputer/virtualisasi yang memiliki alamat IP berbeda. Restart fpm `service php5-fpm restart`. 
