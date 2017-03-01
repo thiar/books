@@ -131,6 +131,17 @@ vagrant destroy
   Menghapus virtualisasi akan menghapus semua data atau aplikasi di dalam virtualisasi
   
 
+### Menetapkan penggunaan memori pada virtual mesin
+Penggunaan memori pada virtual mesin terkadang kurang atau terlalu banyak. Beberapa apliaksi membutuhkan memori/RAM yang besar untuk menjalankan fungsinya, tetapi beberapa aplikasi tidak membutuhkan memori yang besar. Untuk melakukan efisiensi pada penggunaan virtual mesin, kita dapat mengeset memori yang digunakan oleh virtual mesin kita. Buka file `Vagrantfile` kemudian tambahkan baris berikut didalam konfigurasi vagrant:
+``` javascript
+config.vm.provider "virtualbox" do |v|
+  v.memory = 256
+  v.cpus = 1
+end
+```
+Simpan file tersebut dan jalankan vagrant reload. Setelah virtual mesin berhasil di reload masuk ke dalam virtual mesin menggunakan perintah `vagrant ssh` kemudian jalankan perintah free -h pada virtual mesin untuk melihat memori yang digunakan.
+
+
 ### Sinkronisasi folder
 Adakalanya kita ingin mendevelop aplikasi menggunakan editor favorit kita
 seperti `sublimetext`, `netbeans` dan lain sebagainya, tetapi kita ingin
@@ -316,7 +327,7 @@ vagrant reload
 ## Lebih Lanjut
 ### Share Vagrant Environtment
 ### Export custom box
-### Upload custom box ke HasiCorp's Altas cloud
+### Upload custom box ke HasiCorp's Atlas cloud
 
 # Docker
 Docker adalah virtualisasi berbentuk kontainer. Kontainer bekerja lebih
