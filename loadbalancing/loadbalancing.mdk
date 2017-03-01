@@ -111,7 +111,7 @@ php-fpm adalah eksekutor php berbasis fastCGI. Buatlah foler baru bernama vagran
 sudo apt-get update
 sudo apt-get install -y php5-fpm
 ```
-Lakukan konfigurasi pada file `Vagrantfile`, tambahkan shell provisioning dengan file bootstrap.sh. Jalankan `vagrant up --provision` untuk menjalankan virtual mesin.
+Lakukan konfigurasi pada file `Vagrantfile`, tambahkan shell provisioning dengan file bootstrap.sh. Konfigurasi IP private menjadi `192.168.1.4`. Jalankan `vagrant up --provision` untuk menjalankan virtual mesin.
 
 
 ### Konfigurasi php-fpm
@@ -124,4 +124,8 @@ Cari dan ganti baris listen, menjadi sebagai berikut.
 ``` javascript
 listen = 9000
 ```
-Baris tersebut memerintahkan fpm untuk berjalan pada port `9000` daripada pada file sock. Hal ini berguna untuk pengaksesan fpm dari nginx yang berada pada komputer/virtualisasi yang memiliki alamat IP berbeda. Restart fpm `service php5-fpm restart`. 
+Baris tersebut memerintahkan fpm untuk berjalan pada port `9000` daripada pada file sock. Hal ini berguna untuk pengaksesan fpm dari nginx yang berada pada komputer/virtualisasi yang memiliki alamat IP berbeda. Restart fpm `service php5-fpm restart`. Pada folder /var/www/html tambahkan file `index.php` yang berisi:
+``` javascript
+<?php echo "hello world from worker 1" ?> 
+```
+Simpan file, kita tidak dapat mengakses halaman secara langsung seperti pada penggunaan apache2 sebelumnya, Karena fastCGI tidak dapat diakses oleh browser.
