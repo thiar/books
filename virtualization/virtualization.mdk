@@ -672,21 +672,14 @@ mengunakan vagrant virtualbox dan docker.
 1. Buat vagrant virtualbox dan lakukan provisioning 
    * apache2 
    * php7 + opcache 
-   * laravel
-   
-Laravel harus dapat diakses melalui port 8080 dari komputer host
 
 2. Buat vagrant virtualbox dan lakukan provisioning 
-   * nginx
-   * hhvm
-
-   Buat sinkronisasi folder `src` ke `var/www`, folder `src` berisi file `index.php` yang akan menampilkan php version
-
-   Halaman php version harus dapat diakses melalui port 8000
+   * bind9
+   * squid-proxy
 
 3. Buat vagrant virtualbox dan lakukan provisioning 
-   * nginx 
-   * php7-fpm
+   * apache2
+   * php7
 
    Buat sinkronisasi folder `src` ke `var/www`, folder `src` berisi aplikasi
    `codeigniter`.
@@ -694,12 +687,7 @@ Laravel harus dapat diakses melalui port 8080 dari komputer host
    Codeigniter harus dapat diakses melalui port 8000.
 
 4. Buat vagrant virtualbox dan lakukan provisioning  
-   * mariadb
-   
-   Lakukan konfigurasi mariadb berikut saat provisioning
-   * Buat user `"cloud"`dengan password `"cloud!"`
-   * Buat database `"vagrant-cloud"` dan beri akses ke user `"cloud"`
-   * Perbolehkan akses user `"cloud"` dari subnet `"10.0.0.0/8"`.
+  * Ruby on Rails
    
 Untuk setiap permasalahan yang akan dipecahkan buatlah `Vagrantfile` 
 masing-masing beserta script `provisioning`.
