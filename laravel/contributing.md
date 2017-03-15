@@ -1,0 +1,11 @@
+ - awal
+   - prasyarat dan instalasi -> thiar
+   - structure directory -> thiar
+   - alur laravel -> icang
+ - kd
+   - routes dan controller -> thiar
+   - form dan input -> icang
+ - blade templating -> icang
+ - dtbs
+   - migrate -> thiar
+   - model dan eloquent -> thiar
