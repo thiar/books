@@ -49,15 +49,26 @@ Bikin aplikasi FRS. Ada proses login. Ada proses membuat matakuliah. Ada proses 
   3. Buat `database/seeds/UsersTableSeeder`. `php artisan make:seeder UsersTableSeeder`. Tambahkan 3 mahasiswa.
   4. Buat seeder untuk tabel matakuliah. `php artisan make:seeder MataKuliahTableSeeder`.
   4. Buka `database/seeds/DatabaseSeeder`, uncomment bagian `UsersTableSeeder`. Tambahkan juga untuk seeder matakuliah. 
+  4. Jalankan `composer dump-autoload`.
   5. Lalu jalankan `php artisan db:seed`.
 
 ### Routes dan Controller
-Routes `routes/web.php` berisi list url dan controller yang menangani. Sedangkan controller berisi kode backend.
+Routes `app/Http/routes.php` berisi list url dan controller yang menangani. Sedangkan controller berisi kode backend.
   1. `php artisan make:controller AuthController`.
   2. Buat url nya dulu di routes, untuk get dan post.
   3. Buat fungsi di controllernya untuk meload view dari login.
   4. Buat view nya. Kasih kodingan view yg udah ada. https://almsaeedstudio.com/preview > Examples > login.
   5. Buat fungsi di controllernya untuk menangkap proses login.
+
+  - bootstrap: 
+    - https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
+    - https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+  - adminLTE: https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css
+  - icheck:
+    - https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/blue.css
+    - https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js
+  - jquery:
+    - https://code.jquery.com/jquery-3.1.1.min.js
 
 ### Blade dan templating
   1. Download template dari AdminLTE. https://almsaeedstudio.com/preview > Documentation > Download, dan download layout dari starter page yg ada di tip.
