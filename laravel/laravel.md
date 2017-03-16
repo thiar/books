@@ -71,11 +71,13 @@ Routes `routes/web.php` berisi list url dan controller yang menangani. Sedangkan
 ### Basic CRUD dari tiap tabel
   1. Jalankan `php artisan make:controller -r MataKuliahController`.
   2. Jelaskan maksud dari masing masing fungsi pada MataKuliahController.
-  3. Buat fungsi index beserta view nya.
+  3. Buat fungsi index beserta view nya. Jelaskan pula fungsi `dd($argunment1, ..)`
   4. Buat tombol create, mengarahkan ke fungsi create.
   5. Buat tampilan create matakuliah beserta fungsi store nya.
-  6. Buat juga view dan create untuk Mahasiswa.
+  6. Tambahkan kolom edit dan delete pada tabel matakuliah.
+  7. Buat view edit.
 
-### Proses FRS
-  1. Buat menu FRS.
-  2. Buat view untuk menampilkan proses FRS. Ada tabel matakuliah yang sedang diambil, ada dropdown untuk mengambil matakuliah.
+### Proses FRS dan pengenalan model
+  1. Tambahkan fungsi pada model modlenya untuk memberi relationship.
+  2. Buat menu FRS.
+  3. Buat view untuk menampilkan proses FRS. Ada tabel matakuliah yang sedang diambil, ada dropdown untuk mengambil matakuliah.
