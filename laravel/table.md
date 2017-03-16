@@ -1,27 +1,26 @@
 Table
 
 user
-  - id
-  - password
-  - email
-  - nrp
-  - role
-  ------------------
+  - id: integer
+  - password: string
+  - email: string
+  - nrp: string
+  - -----------------
   - frs() : hasMany
 
 matakuliah
   - id
-  - kode
-  - nama
-  - kelas
-  ------------------
+  - kode: string
+  - nama: string
+  - kelas: string
+  - -----------------
   - frs() : hasMany
 
 frs
-  - id
-  - user_id
-  - matakuliah_id
-  - nilai
-  ------------------
+  - id: integer
+  - user_id: integer
+  - matakuliah_id: integer
+  - nilai: float
+  - -----------------
   - user() : belongsTo
   - matakuliah() : belongsTo
