@@ -9,20 +9,23 @@
  - `app\Http\Middleware` menyimpan middleware yang akan digunakan oleh user.
 
 #### Log middleware
- - `php artisan make:model -m AccessLog`.
  - `php artisan make:middleware AccessLogMiddleware`.
- - Buka middleware yang baru dibuat, buat kode masukin ke tabel lewat model AccessLog.
- - Tambahkan rute middleware di kernel.
- - Tambahkan controller yang berisi menampilkan jumlah halaman diakses.
+ - Buka middleware yang baru dibuat, buat kode untuk memasukkan log model AccessLog.
+ - Tambahkan rute middleware tersebut di kernel dengan nama `access-log`.
+ - Tambahkan controller yang menampilkan jumlah halaman diakses.
  - Tambahkan rute controller tersebut, menggunakan middleware.
+
+#### Auth middleware
+  Laravel menyediakan middleware authentikasi user, yaitu user harus melakukan login untuk mengakses rute tertentu. 
+  Untuk menggunakan fungsi-fungsi yang berkaitan dengan Auth, masukkan `use Auth` pada controller.
 
 #### Entrust
 ##### Set up
  1. Pada `config/app.php`, tambahkan
-   - `Zizaco\Entrust\EntrustServiceProvider::class,`
-   - `'Entrust'   => Zizaco\Entrust\EntrustFacade::class,`
+   - `Zizaco\Entrust\EntrustServiceProvider::class,` pada `'providers'`
+   - `'Entrust'   => Zizaco\Entrust\EntrustFacade::class,` pada `'aliases'`
 
- 2. Pada `app/Http/Kernel.php`, tambahkan
+ 2. Pada `app/Http/Kernel.php`, tambahkan pada `$routeMiddleware`
   ```php
   'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
   'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
@@ -31,9 +34,11 @@
 
  3. Jalankan `php artisan entrust:migration` untuk membuat tabel khusus entrust. Lalu jalankan `php artisan migrate`.
 
- 4. Buat file `app/Role.php`
+ 4. Buat file baru `app/Role.php` dengan `php artisan make:model Role`, lalu isi dengan
   ```php
-<?php namespace App;
+<?php
+
+namespace App;
 
 use Zizaco\Entrust\EntrustRole;
 
@@ -42,9 +47,11 @@ class Role extends EntrustRole
 }
 ```
 
- 5. Buat file `app/Permission.php`
+ 5. Buat file baru `app/Permission.php` dengan `php artisan make:model Permission`, lalu isi dengan
   ```php
-<?php namespace App;
+<?php
+
+namespace App;
 
 use Zizaco\Entrust\EntrustPermission;
 
@@ -67,4 +74,14 @@ class User extends Eloquent
 }
 ```
 
- 7. Terakhir, jalankan `composer dump-autoload`
+ 8. Jalankan `composer dump-autoload`
+ 9. Pada `.env`, pastikan nilai `CACHE_DRIVER=array`
+
+##### Penggunaan
+ - Menggunakan middleware `role:lecturer` untuk membatasi rute hanya bisa diakses oleh role lecturer.
+ - Menggunakan template pada blade
+```html
+@permission('student')
+    <p>Pesan ini hanya bisa diakses oleh student.</p>
+@endpermission
+```
