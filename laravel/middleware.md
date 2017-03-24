@@ -32,7 +32,7 @@
   'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
 ```
 
- 3. Jalankan `php artisan entrust:migration` untuk membuat tabel khusus entrust. Lalu jalankan `php artisan migrate`.
+ 3. Jalankan `php artisan entrust:migration` untuk membuat tabel khusus entrust.
 
  4. Buat file baru `app/Role.php` dengan `php artisan make:model Role`, lalu isi dengan
   ```php
@@ -76,6 +76,9 @@ class User extends Eloquent
  7. Jalankan `composer dump-autoload`
 
  8. Pada `.env`, pastikan nilai `CACHE_DRIVER=array`
+
+ 9. Pada `database/seeds/DatabaseSeeder.php`, uncomment bagian RolesTableSeeder.
+ 10. Jalankan `php artisan migrate`, dan `php artisan db:seed`
 
 ##### Penggunaan
  - Menggunakan middleware `role:lecturer` untuk membatasi rute hanya bisa diakses oleh role lecturer.
