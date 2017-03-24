@@ -73,9 +73,9 @@ class User extends Eloquent
     ...
 }
 ```
+ 7. Jalankan `composer dump-autoload`
 
- 8. Jalankan `composer dump-autoload`
- 9. Pada `.env`, pastikan nilai `CACHE_DRIVER=array`
+ 8. Pada `.env`, pastikan nilai `CACHE_DRIVER=array`
 
 ##### Penggunaan
  - Menggunakan middleware `role:lecturer` untuk membatasi rute hanya bisa diakses oleh role lecturer.
