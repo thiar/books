@@ -131,6 +131,12 @@ Baris tersebut memerintahkan fpm untuk berjalan pada port `9000` daripada pada f
 Simpan file, kita tidak dapat mengakses halaman secara langsung seperti pada penggunaan apache2 sebelumnya, Karena fastCGI tidak dapat diakses oleh browser.
 
 #Excercise
+Untuk lebih memahami tentang load balancing, kerjakan soal latihan berikut.
 
+## HTTP Proxy Pass
 1. Buatlah sistem load balancing dengan 1 load balancer(nginx) dan 2 worker(apache2), terapkan algoritma load balancing **round-robin**,**least-connected** dan **ip-hash** . Buatlah Vagrantfile untuk menyelesaikan kasus tersebut(boleh virtualbox/docker) dan sertakan laporan analisis terhadap ketiga algoritma tersebut
 
+## FastCGI Proxy Pass
+1. Buatlah script php untuk melakukan sorting menggunakan algoritma bubblesort. Input berupa kumpulan angka dan di jalankan melalui form upload, output adalah kumpulan angka yang telah tersorting. Buatlah load balancing dengan 1 load balancer(nginx) dan 2 worker(**php-fpm**). Buatlah Vagrantfile untuk menyelesaikan kasus tersebut(boleh virtualbox/docker).
+
+2. Buatlah script php untuk melakukan sorting menggunakan algoritma bubblesort. Input berupa kumpulan angka dan di jalankan melalui form upload, output adalah kumpulan angka yang telah tersorting. Buatlah load balancing dengan 1 load balancer(nginx) dan 2 worker(**hhvm**). Buatlah Vagrantfile untuk menyelesaikan kasus tersebut(boleh virtualbox/docker).
