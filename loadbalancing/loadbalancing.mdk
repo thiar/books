@@ -129,3 +129,8 @@ Baris tersebut memerintahkan fpm untuk berjalan pada port `9000` daripada pada f
 <?php echo "hello world from worker 1" ?> 
 ```
 Simpan file, kita tidak dapat mengakses halaman secara langsung seperti pada penggunaan apache2 sebelumnya, Karena fastCGI tidak dapat diakses oleh browser.
+
+#Excercise
+
+1. Buatlah sistem load balancing dengan 1 load balancer(nginx) dan 2 worker(apache2), terapkan algoritma load balancing **round-robin**,**least-connected** dan **ip-hash** . Buatlah Vagrantfile untuk menyelesaikan kasus tersebut(boleh virtualbox/docker) dan sertakan laporan analisis terhadap ketiga algoritma tersebut
+
